@@ -49,9 +49,9 @@ app.post("/users", async function (req: Request, res: Response){
         err="Senhas diferentes!"
         return res.render("userform", {err:err});
     }
-    const insertQuery="INSERT INTO users(name, email, role, password) VALUES(?,?,?,?)";
+    const insertQuery="INSERT INTO users(name, email, role, password, is_active) VALUES(?,?,?,?,?)";
     try{
-        await connection.query(insertQuery, [body.name, body.email, body.role, body.password]);
+        await connection.query(insertQuery, [body.name, body.email, body.role, body.password, body.is_active]);
     }
     catch{
         err="Email já em uso!"
